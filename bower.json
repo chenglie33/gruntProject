@@ -1,0 +1,18 @@
+{
+  "name": "grun",
+  "description": "grunt",
+  "main": "index.js",
+  "authors": [
+    "chenlei"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/chenglie33/gruntProject",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "bowerJs",
+    "test",
+    "tests"
+  ]
+}

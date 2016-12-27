@@ -20,13 +20,23 @@ module.exports=function(grunt){
                     dest: 'dist/js'//输出到此目录下
                 }]
             }
-        }
+        },
+        concat: {
+            options: {
+                separator: ';',//文件之间隔开方式“；”
+                stripBanners: true//去除代码注释块
+            },
+            dist: {
+                src: ['src/intro.js', 'src/project.js', 'src/outro.js'],
+                dest: 'dist/built.js',
+            },
+        },
 
     });
-
-     // grunt.registerTask("default",['jshint']);
-     //grunt.registerTask('jshints', ['jshint']);
-     grunt.registerTask("uglifys",['uglify']);//所有的别名不可以与json中的key一样
+//所有的别名不可以与json中的key一样
+     grunt.registerTask("default",['jshint']);
+     grunt.registerTask('jshints', ['jshint']);//js代码校验
+     grunt.registerTask("uglifys",['uglify']);//js代码压缩
 
 }
 
