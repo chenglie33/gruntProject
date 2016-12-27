@@ -1,0 +1,11 @@
+{
+  "curly": true,
+  "eqnull": true,
+  "eqeqeq": true,
+  "undef": true,
+  "devel": true,//console,alert
+  "browser": true,//预定义全局变量 document，navigator，FileReader
+  "globals": {//内联配置  这个选项可以用来指定一个没有正式定义的全局变量的白名单
+    "window": true
+  }
+}
