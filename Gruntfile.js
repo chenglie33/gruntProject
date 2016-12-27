@@ -31,12 +31,23 @@ module.exports=function(grunt){
                 dest: 'dist/built.js',
             },
         },
-
+        copy: {
+            main: {
+                expand: true,
+                cwd: 'demo/page',
+                src: '**',
+                dest: 'dist/page',
+                filter: 'isFile',
+            },
+        },
+        clean:['dist/*','demo/*']
     });
 //所有的别名不可以与json中的key一样
      grunt.registerTask("default",['jshint']);
      grunt.registerTask('jshints', ['jshint']);//js代码校验
      grunt.registerTask("uglifys",['uglify']);//js代码压缩
+     grunt.registerTask("copys",['copy']);//js代码压缩
+     grunt.registerTask("cleans",['clean']);//js代码压缩
 
 }
 
