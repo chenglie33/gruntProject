@@ -23,13 +23,11 @@ module.exports=function(grunt){
         }
 
     });
-        grunt.registerTask('log', 'Log stuff.', function() {
-        grunt.log.writeln(this.target + ': ' + this.data);
-    });
 
-    grunt.registerTask("default",['log']);
-    grunt.registerTask('jshint', ['jshint']);
-    grunt.registerTask("uglify",['uglify']);
+     // grunt.registerTask("default",['jshint']);
+     //grunt.registerTask('jshints', ['jshint']);
+     grunt.registerTask("uglifys",['uglify']);//所有的别名不可以与json中的key一样
+
 }
 
 
