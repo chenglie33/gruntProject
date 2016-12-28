@@ -2,6 +2,7 @@
 形成一个可开发的打包项目
 目录结构
 - -gruntProject
+  
    |-demo  开发前的代码写入点
    |-dist  开发后自动生成
    |-node_modules node相关的工具代码
