@@ -9,6 +9,6 @@ describe("test Person",function(){
     })
     it("test student is can be used",function(){
 
-        expect(new Student().init()).toBe("wang say he love cake")
+        expect(student.init).toBe("wang")
     })
 });
