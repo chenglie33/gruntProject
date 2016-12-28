@@ -1,13 +1,15 @@
 describe("Player", function() {
   var Player = require('../../lib/jasmine_examples/Player');
   var Song = require('../../lib/jasmine_examples/Song');
-
+  var Student= require('../../lib/jasmine_examples/MyMetch');
+  var student;
   var player;
   var song;
 
   beforeEach(function() {
     player = new Player();
     song = new Song();
+    student=new Student();
   });
 
   it("should be able to play a Song", function() {
@@ -60,6 +62,15 @@ describe("Player", function() {
   });
 
 
+  describe("TestPerson",function(){
+
+
+    it("test student is can be used",function(){
+
+      expect(student.init()).not.toBe("wang")
+    });
+
+  });
 
 
 });
