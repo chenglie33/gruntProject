@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Proxy Demo Client</title>
+    <script src="../../bowerJs/jquery/dist/jquery.min.js"></script>
+</head>
+<body>
+<script>
+    var a={pageNo:1,pageSize:20,createTime:"2016-11"};
+    $.ajax({
+        url: "/chuangfubao/rs/newsInterfaces/getDatasByPager",
+        dataType: "JSON",
+        async: true,
+        contentType:"application/json; charset=utf-8",
+        method: "post",
+        data: JSON.stringify(a) ,
+        success:function(data){
+            console.log(data)
+        },
+        error:function(err){
+            alert(err)
+            console.log(err)
+        }
+    });
+</script>
+客户端页面11
+
+</body>
+</html>

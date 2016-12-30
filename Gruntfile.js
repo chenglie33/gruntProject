@@ -1,5 +1,9 @@
 module.exports=function(grunt){
     require('load-grunt-tasks')(grunt);
+    var serveStatic = require('serve-static');
+    var proxyRewrite = {
+        '^/provider/': '/chuangfubao/'
+    };
     grunt.initConfig({
        pkg:grunt.file.readJSON("package.json"),//读取json元文件
         jshint:{
@@ -40,7 +44,65 @@ module.exports=function(grunt){
                 filter: 'isFile',
             },
         },
-        clean:['dist/*','demo/*']
+        clean:['dist/*','demo/*'],
+        watch: {
+            options: {
+                livereload: true
+            },
+            js: {
+                files: 'demo/**/*.js',
+              //  tasks: ['copy:js','replace:js']
+            }
+        },
+        connect: {
+            options: {
+                port: '9001',
+                hostname: 'localhost',
+                protocol: 'http',
+                open: true,
+                base: {
+                    path: './',
+                    options: {
+                        index: 'demo/html/index.html'
+                    }
+                },
+                livereload: true
+            },
+            proxies: [
+                {
+                    context: '/chuangfubao',
+                    host: 'www.wxspider.com',
+                    port: '80',
+                    https: false,
+                    changeOrigin: true,
+                    rewrite: proxyRewrite
+                }
+            ],
+            default: {},
+            proxy: {
+                options: {
+                    middleware: function (connect, options) {
+                        if (!Array.isArray(options.base)) {
+                            options.base = [options.base];
+                        }
+
+                        // Setup the proxy
+                        var middlewares = [require('grunt-connect-proxy/lib/utils').proxyRequest];
+
+                        // Serve static files.
+                        options.base.forEach(function (base) {
+                            middlewares.push(serveStatic(base.path, base.options));
+                        });
+
+                        // Make directory browse-able.
+                        /*var directory = options.directory || options.base[options.base.length - 1];
+                         middlewares.push(connect.directory(directory));
+                         */
+                        return middlewares;
+                    }
+                }
+            }
+        }
     });
 //所有的别名不可以与json中的key一样
      grunt.registerTask("default",['jshint']);
@@ -48,6 +110,13 @@ module.exports=function(grunt){
      grunt.registerTask("uglifys",['uglify']);//js代码压缩
      grunt.registerTask("copys",['copy']);//js代码压缩
      grunt.registerTask("cleans",['clean']);//js代码压缩
+    grunt.registerTask('proxyServer', '启动代理服务......', function () {
+        grunt.task.run([
+            'configureProxies:proxy',
+            'connect:proxy',
+            'watch'
+        ]);
+    });
 
 }
 
