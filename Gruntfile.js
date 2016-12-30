@@ -70,12 +70,12 @@ module.exports=function(grunt){
             },
             proxies: [
                 {
-                    context: '/chuangfubao',
+                    context: '/chuangfubao',//更地址下的chaunfubao全部被代理到
                     host: 'www.wxspider.com',
                     port: '80',
                     https: false,
                     changeOrigin: true,
-                    rewrite: proxyRewrite
+                    rewrite: proxyRewrite//客户端所有的chuangfubao全部被替换为代理服务器的地址
                 }
             ],
             default: {},
